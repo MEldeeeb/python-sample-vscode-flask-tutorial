@@ -1,9 +1,9 @@
-node('agent_1') {
-    stage('Build Docker Image') {
-        sh "docker build -t meldeeeb/l_2_scriptive:v${env.BUILD_NUMBER} ."
+node('bash') {
+    stage('Build Docker image') {
+        sh "docker build -t meldeeeb/l_2:v${env.BUILD_NUMBER} ."
     }
     
-    stage('Push Docker Image') {
-        sh "docker push meldeeeb/l_2_scriptive:v${env.BUILD_NUMBER}"
-    }
+    stage('Push Docker image') {
+        sh "docker push meldeeeb/l_2:v${env.BUILD_NUMBER}"
+    }
 }
