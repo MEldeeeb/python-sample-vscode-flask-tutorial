@@ -1,9 +1,9 @@
 node('bash') {
     stage('Build Docker image') {
-        sh "docker build -t meldeeeb/l_2:v${env.BUILD_NUMBER} ."
+        sh "docker build -t meldeeeb/l_2_s:v${env.BUILD_NUMBER} ."
     }
     
     stage('Push Docker image') {
-        sh "docker push meldeeeb/l_2:v${env.BUILD_NUMBER}"
+        sh "docker push meldeeeb/l_2_s:v${env.BUILD_NUMBER}"
     }
 }
