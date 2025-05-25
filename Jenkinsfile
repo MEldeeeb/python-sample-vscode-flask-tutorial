@@ -1,4 +1,4 @@
-node('bash') {
+node('agent_1') {
     stage('Build Docker Image') {
         sh "docker build -t meldeeeb/l_2_scriptive:v${env.BUILD_NUMBER} ."
     }
