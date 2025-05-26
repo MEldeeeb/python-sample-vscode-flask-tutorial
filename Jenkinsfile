@@ -24,7 +24,7 @@ pipeline{
                 script{
                     def dockerx = new org.iti.docker()
                     dockerx.login(env.DOCKER_CREDS_USR, env.DOCKER_CREDS_PSW)
-                    dockerx.push(env.DOCKER_CREDS_USR, env.DOCKER_CREDS_PSW)
+                    dockerx.push("python", "${BUILD_NUMBER}")
 
                 }
             }
