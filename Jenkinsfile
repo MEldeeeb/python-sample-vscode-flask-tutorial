@@ -20,12 +20,16 @@ pipeline{
                
             }
         }
-        stage("push Docker image using python"){
-            steps{
-                script{
-                    def dockerx = new org.iti.docker()
-                    dockerx.login(env.DOCKER_USER, env.DOCKER_PASS)
-                    dockerx.push("${DOCKER_USER}", "${DOCKER_PASS}")
+        stage("push Docker image using python") {
+            steps {
+                withCredentials([
+                    usernamePassword(credentialsId: 'dockerhub-user', usernameVariable: 'DOCKER_USER', passwordVariable: 'DOCKER_PASS')
+                ]) {
+                    script {
+                        def dockerx = new org.iti.docker()
+                        dockerx.login(env.DOCKER_USER, env.DOCKER_PASS)
+                        dockerx.push(env.DOCKER_USER, env.DOCKER_PASS)
+                    }
                 }
             }
         }
