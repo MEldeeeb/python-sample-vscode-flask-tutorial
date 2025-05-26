@@ -14,7 +14,7 @@ pipeline{
             steps{
                 script{
                     def dockerx = new org.iti.docker()
-                    dockerx.build("python", "${BUILD_NUMBER}")
+                    dockerx.build("python-app", "${BUILD_NUMBER}")
                 }
                
             }
@@ -24,7 +24,7 @@ pipeline{
                 script{
                     def dockerx = new org.iti.docker()
                     dockerx.login(env.DOCKER_CREDS_USR, env.DOCKER_CREDS_PSW)
-                    dockerx.push("python", "${BUILD_NUMBER}")
+                    dockerx.push("python-app", "${BUILD_NUMBER}")
 
                 }
             }
