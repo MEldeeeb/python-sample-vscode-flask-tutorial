@@ -5,8 +5,7 @@ pipeline{
         label "bash"
     }
     environment{
-        DOCKER_USER = credentials('dockerhub-user')
-        DOCKER_PASS = credentials('dockerhub-password')
+        DOCKER_CREDS = credentials('dockerhub-user'))
     }
 
 
@@ -20,16 +19,13 @@ pipeline{
                
             }
         }
-        stage("push Docker image using python") {
-            steps {
-                withCredentials([
-                    usernamePassword(credentialsId: 'dockerhub-user', usernameVariable: 'DOCKER_USER', passwordVariable: 'DOCKER_PASS')
-                ]) {
-                    script {
-                        def dockerx = new org.iti.docker()
-                        dockerx.login(env.DOCKER_USER, env.DOCKER_PASS)
-                        dockerx.push(env.DOCKER_USER, env.DOCKER_PASS)
-                    }
+        stage("push Docker image using python"){
+            steps{
+                script{
+                    def dockerx = new org.iti.docker()
+                    dockerx.login(env.DOCKER_CREDS_USR, env.DOCKER_CREDS_PSW)
+                    dockerx.push(env.DOCKER_CREDS_USR, env.DOCKER_CREDS_PSW)
+
                 }
             }
         }
