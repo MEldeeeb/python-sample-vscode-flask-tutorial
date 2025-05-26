@@ -5,7 +5,7 @@ pipeline{
         label "bash"
     }
     environment{
-        DOCKER_CREDS = credentials('dockerhub-user'))
+        DOCKER_CREDS = credentials('dockerhub-user')
     }
 
 
