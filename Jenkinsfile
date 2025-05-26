@@ -15,9 +15,9 @@ pipeline{
             steps{
                 script{
                     def dockerx = new org.iti.docker()
-                    dockerx.build("java", "${BUILD_NUMBER}")
+                    dockerx.build("python", "${BUILD_NUMBER}")
                 }
-                sh "docker login -u ${DOCKER_USER} -p ${DOCKER_PASS} "
+                // S
             }
         }
         stage("push Docker image using python"){
