@@ -5,7 +5,7 @@ pipeline{
         label "bash"
     }
     environment{
-        DOCKER_CREDS = credentials('dockerhub-user')
+        DOCKER_USER = credentials('dockerhub-user')
     }
 
 
@@ -14,7 +14,7 @@ pipeline{
             steps{
                 script{
                     def dockerx = new org.iti.docker()
-                    dockerx.build("python-app", "${BUILD_NUMBER}")
+                    dockerx.build("meldeeeb/python-app", "${BUILD_NUMBER}")
                 }
                
             }
@@ -23,8 +23,8 @@ pipeline{
             steps{
                 script{
                     def dockerx = new org.iti.docker()
-                    dockerx.login(env.DOCKER_CREDS_USR, env.DOCKER_CREDS_PSW)
-                    dockerx.push("python-app", "${BUILD_NUMBER}")
+                dockerx.login(env.DOCKER_CREDS_USR, env.DOCKER_CREDS_PSW)
+                dockerx.push("meldeeeb/python-app", "${BUILD_NUMBER}")
 
                 }
             }
