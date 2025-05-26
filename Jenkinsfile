@@ -17,7 +17,7 @@ pipeline{
                     def dockerx = new org.iti.docker()
                     dockerx.build("python", "${BUILD_NUMBER}")
                 }
-                // S
+               
             }
         }
         stage("push Docker image using python"){
